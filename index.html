@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Machine</title>
+</head>
+    <style>
+        * {
+            font-size: 1rem;
+        }
+    </style>
+    <body>
+        <wrapper id="quote-box">
+            <div id="text"></div>
+            <div id="author"></div>
+            <button id="new-quote" onClick="generateQuote()">New Quote</button>
+            <a href="#" id="tweet-quote" target="_blank">Tweet Quote</a>
+        </wrapper>
+        <script>
+        const QUOTEBANK = [
+            {
+                quote: "Start writing, no matter what. The water does not flow until the faucet is turned on.",
+                author: "Louis L’Amour" 
+            }, {
+                quote: "Get it down. Take chances. It may be bad, but it's the only way you can do anything really good.",
+                author: "William Faulkner"
+            }, {
+                quote: "The first draft is just you telling yourself the story.",
+                author: "Terry Pratchett"
+            }, {
+                quote: "You don’t start out writing good stuff. You start out writing crap and thinking it’s good stuff, and then gradually you get better at it.",
+                author: "Octavia E.Butler"
+            }, {
+                quote: "Start before you’re ready.",
+                author: "Steven Pressfield"
+            }
+            , {
+                quote: "Start before you’re ready.",
+                author: "Steven Pressfield"
+            }, {
+                quote: "You can always edit a bad page. You can’t edit a blank page",
+                author: "Jodi Picoult"
+            }, {
+                quote: "You can’t wait for inspiration. You have to go after it with a club.",
+                author: "jack London"
+            }, {
+                quote: "I have never started a poem yet whose end I knew. Writing a poem is discovering.",
+                author: "Robert Forst"
+            }
+        ]
+        window.onload = init
+        function init() {
+            generateQuote()
+        }
+        function generateQuote() {
+            let quoteSize = QUOTEBANK.length
+            let randomIndex = Math.floor(Math.random() * quoteSize)
+            let randomQuoteData = QUOTEBANK[randomIndex]
+
+            
+            let tweetLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+            //Add the quote
+            let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20")
+            tweetLink += quoteInApiFormat
+            //Add the author
+            let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20")
+            tweetLink += " - " + authorInApiFormat
+
+            document.getElementById('tweet-quote').href = tweetLink
+            document.getElementById('text').innerText = randomQuoteData.quote;
+            document.getElementById('author').innerText = randomQuoteData.author
+        }
+        </script>
+        <script https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js></script>
+    </body>
+</html>
